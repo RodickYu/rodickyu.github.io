@@ -69,3 +69,21 @@ npm install
 ```shell
 pm2 start app.js --name vless
 ``` 
+
+
+- ####  接着去你的代理客户端软件中手动添加vless配置即可：
+
+| Key | Value |
+|--------|--------|
+| 地址 | Panel 中 WWW Websites 选项卡里的你的 Domain name |
+| 端口 | 你放行的端口 |
+| 用户 ID | 你修改的UUID |
+| 传输协议 | ws |
+| 伪装域名 | 同地址 |
+| ws path | / | 
+
+也可以复制以下vless节点信息，修改`<域名地址>`为Panel 中 WWW Websites 选项卡里的你的 Domain name，`<端口>`为你放行的端口即可
+
+```shell
+vless://37a0bd7c-8b9f-4693-8916-bd1e2da0a817@<域名地址>:<端口>?flow=&security=none&encryption=none&type=ws&host=<域名地址>&path=/&sni=&fp=&pbk=&sid=SERV00-VLESS
+``` 
