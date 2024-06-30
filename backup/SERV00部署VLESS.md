@@ -87,3 +87,76 @@ pm2 start app.js --name vless
 ```shell
 vless://37a0bd7c-8b9f-4693-8916-bd1e2da0a817@<域名地址>:<端口>?flow=&security=none&encryption=none&type=ws&host=<域名地址>&path=/&sni=&fp=&pbk=&sid=SERV00-VLESS
 ``` 
+
+#    六  自动化
+
+SERV00每三个月内必须要有一次登录面板或者SSH连接，不然会删号，也可以通过一个脚本解决问题
+
+- ####  自动续期脚本制作
+
+1. 新建`opt`目录，并进入目录
+
+```shell
+mkdir ~/opt
+``` 
+
+2. 创建自动续期脚本，把其中的`密码`、`用户名`、SSH的`地址`修改为你自己的。
+
+```shell
+cat > auto-renew.sh << EOF
+#!/bin/bash
+
+while true; do
+  sshpass -p '密码' ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -tt 用户名@地址 "exit" &
+  sleep 259200  #30天为259200秒
+done
+EOF
+``` 
+
+3. 给 auto-renew.sh添加可执行权限：
+
+```shell
+chmod +x auto-renew.sh
+``` 
+
+4. 使用PM2启动：
+
+```shell
+pm2 start ./auto-renew.sh
+``` 
+
+- ####  保存PM2快照并将PM2加入服务器重启后自动启动
+
+1. 保存PM2快照
+
+```shell
+pm2 save
+``` 
+
+2. 在SERV00的管理页面上找到Cron jobs选项卡，使用Add cron job功能添加任务，Specify time选择After reboot，即为重启后运行。Form type选择Advanced，Command写：
+
+```shell
+/home/用户名/.npm-global/bin/pm2 resurrect
+``` 
+
+这样每次SERV00不定时重启任务时，都能自动调用PM2读取保存的任务列表快照，恢复任务列表。如果在保存了任务列表快照后又改变了任务PM2的任务列表，需要重新执行保存快照以更新任务列表。
+
+#    *七  PM2可视化页面监控进程
+
+1. 进入[https://app.pm2.io](https://app.pm2.io)PM2账号并创建新的Bucket：VLESS
+2. 在SSH中开启页面监控，依次输入你注册PM2账号等信息
+
+```shell
+pm2 monitor
+``` 
+
+3. 根据页面连接提示在SSH中链接服务器即可
+
+
+————————————————
+版权声明：本文为「一休's Blog」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2
+
+
+根据以上原文整理了顺序
+附YOUTUBE视频链接：[https://www.youtube.com/watch?v=lXQxEh8Awaw&t=1s](https://www.youtube.com/watch?v=lXQxEh8Awaw&t=1s)

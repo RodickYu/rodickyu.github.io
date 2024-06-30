@@ -281,7 +281,65 @@ DNS zones-&gt;Add new zone，填入注册的域名，并获取SERV00的DNS记录
 </tbody>
 </table>
 <p>也可以复制以下vless节点信息，修改<code class="notranslate">&lt;域名地址&gt;</code>为Panel 中 WWW Websites 选项卡里的你的 Domain name，<code class="notranslate">&lt;端口&gt;</code>为你放行的端口即可</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">vless://37a0bd7c-8b9f-4693-8916-bd1e2da0a817@<span class="pl-k">&lt;</span>域名地址<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>端口<span class="pl-k">&gt;</span><span class="pl-k">?</span>flow=<span class="pl-k">&amp;</span>security=none<span class="pl-k">&amp;</span>encryption=none<span class="pl-k">&amp;</span>type=ws<span class="pl-k">&amp;</span>host=<span class="pl-k">&lt;</span>域名地址<span class="pl-k">&gt;&amp;</span>path=/<span class="pl-k">&amp;</span>sni=<span class="pl-k">&amp;</span>fp=<span class="pl-k">&amp;</span>pbk=<span class="pl-k">&amp;</span>sid=SERV00-VLESS</pre></div></div>
+<div class="highlight highlight-source-shell"><pre class="notranslate">vless://37a0bd7c-8b9f-4693-8916-bd1e2da0a817@<span class="pl-k">&lt;</span>域名地址<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>端口<span class="pl-k">&gt;</span><span class="pl-k">?</span>flow=<span class="pl-k">&amp;</span>security=none<span class="pl-k">&amp;</span>encryption=none<span class="pl-k">&amp;</span>type=ws<span class="pl-k">&amp;</span>host=<span class="pl-k">&lt;</span>域名地址<span class="pl-k">&gt;&amp;</span>path=/<span class="pl-k">&amp;</span>sni=<span class="pl-k">&amp;</span>fp=<span class="pl-k">&amp;</span>pbk=<span class="pl-k">&amp;</span>sid=SERV00-VLESS</pre></div>
+<h1>六  自动化</h1>
+<p>SERV00每三个月内必须要有一次登录面板或者SSH连接，不然会删号，也可以通过一个脚本解决问题</p>
+<ul>
+<li>
+<h4>自动续期脚本制作</h4>
+</li>
+</ul>
+<ol>
+<li>新建<code class="notranslate">opt</code>目录，并进入目录</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir <span class="pl-k">~</span>/opt</pre></div>
+<ol start="2">
+<li>创建自动续期脚本，把其中的<code class="notranslate">密码</code>、<code class="notranslate">用户名</code>、SSH的<code class="notranslate">地址</code>修改为你自己的。</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">cat <span class="pl-k">&gt;</span> auto-renew.sh <span class="pl-s"><span class="pl-k">&lt;&lt;</span> <span class="pl-k">EOF</span></span>
+<span class="pl-s">#!/bin/bash</span>
+<span class="pl-s"></span>
+<span class="pl-s">while true; do</span>
+<span class="pl-s">  sshpass -p '密码' ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -tt 用户名@地址 "exit" &amp;</span>
+<span class="pl-s">  sleep 259200  #30天为259200秒</span>
+<span class="pl-s">done</span>
+<span class="pl-s"><span class="pl-k">EOF</span></span></pre></div>
+<ol start="3">
+<li>给 auto-renew.sh添加可执行权限：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">chmod +x auto-renew.sh</pre></div>
+<ol start="4">
+<li>使用PM2启动：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pm2 start ./auto-renew.sh</pre></div>
+<ul>
+<li>
+<h4>保存PM2快照并将PM2加入服务器重启后自动启动</h4>
+</li>
+</ul>
+<ol>
+<li>保存PM2快照</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pm2 save</pre></div>
+<ol start="2">
+<li>在SERV00的管理页面上找到Cron jobs选项卡，使用Add cron job功能添加任务，Specify time选择After reboot，即为重启后运行。Form type选择Advanced，Command写：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">/home/用户名/.npm-global/bin/pm2 resurrect</pre></div>
+<p>这样每次SERV00不定时重启任务时，都能自动调用PM2读取保存的任务列表快照，恢复任务列表。如果在保存了任务列表快照后又改变了任务PM2的任务列表，需要重新执行保存快照以更新任务列表。</p>
+<h1>*七  PM2可视化页面监控进程</h1>
+<ol>
+<li>进入<a href="https://app.pm2.io" rel="nofollow">https://app.pm2.io</a>PM2账号并创建新的Bucket：VLESS</li>
+<li>在SSH中开启页面监控，依次输入你注册PM2账号等信息</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pm2 monitor</pre></div>
+<ol start="3">
+<li>根据页面连接提示在SSH中链接服务器即可</li>
+</ol>
+<p>————————————————<br>
+版权声明：本文为「一休's Blog」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：<a href="https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2" rel="nofollow">https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2</a></p>
+<p>根据以上原文整理了顺序<br>
+附YOUTUBE视频链接：<a href="https://www.youtube.com/watch?v=lXQxEh8Awaw&amp;t=1s" rel="nofollow">https://www.youtube.com/watch?v=lXQxEh8Awaw&amp;t=1s</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
