@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RodickYu</title><link>https://rodickyu.github.io</link><description>Life is short,Play more!</description><copyright>RodickYu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/92588826?v=4</url><title>avatar</title><link>https://rodickyu.github.io</link></image><lastBuildDate>Sat, 29 Jun 2024 22:53:39 +0000</lastBuildDate><managingEditor>RodickYu</managingEditor><ttl>60</ttl><webMaster>RodickYu</webMaster><item><title>SERV00部署VLESS</title><link>https://rodickyu.github.io/post/SERV00-bu-shu-VLESS.html</link><description>#     一  注册SERV00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RodickYu</title><link>https://rodickyu.github.io</link><description>Life is short,Play more!</description><copyright>RodickYu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/92588826?v=4</url><title>avatar</title><link>https://rodickyu.github.io</link></image><lastBuildDate>Mon, 01 Jul 2024 12:27:42 +0000</lastBuildDate><managingEditor>RodickYu</managingEditor><ttl>60</ttl><webMaster>RodickYu</webMaster><item><title>SERV00部署VLESS</title><link>https://rodickyu.github.io/post/SERV00-bu-shu-VLESS.html</link><description>#     一  注册SERV00&#13;
   注册地址：[https://www.serv00.com/](https://www.serv00.com/)&#13;
   *会有IP纯净度的检测&#13;
 &#13;
@@ -21,9 +21,7 @@ DNS zones-&gt;Add new zone，填入注册的域名，并获取SERV00的DNS记录
 &#13;
 1. 添加端口  Port reservation-&gt;Add port-&gt;Random&#13;
 2. 添加域名  WWW websites-&gt;add new website-&gt;复制Cloudns中申请到的域名-&gt;Advanced settings-&gt;将Webiste type更改位Proxy-&gt;Proxy port中选择上一步添加的端口&#13;
-3. 为DNS解析中A记录的DNS地址添加SSL证书 WWW websites-&gt;Manage SSL certificates-&gt;选取A记录DNS地址后的Manage-&gt;Add certificate-&gt;随机生成一个SSL证书&#13;
-*若生成失败，可到[FreeSSL](https://freessl.cn/)自行申请&#13;
-4. 开启应用权限  Additional services-&gt;Status-&gt;Enabled&#13;
+3. 开启应用权限  Additional services-&gt;Status-&gt;Enabled&#13;
 &#13;
 &#13;
 #    五  搭建VLESS&#13;

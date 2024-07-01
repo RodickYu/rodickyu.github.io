@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://avatars.githubusercontent.com/u/92588826?v=4"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -31,9 +31,7 @@ DNS zones->Add new zone，填入注册的域名，并获取SERV00的DNS记录
 
 1. 添加端口  Port reservation->Add port->Random
 2. 添加域名  WWW websites->add new website->复制Cloudns中申请到的域名->Advanced settings->将Webiste type更改位Proxy->Proxy port中选择上一步添加的端口
-3. 为DNS解析中A记录的DNS地址添加SSL证书 WWW websites->Manage SSL certificates->选取A记录DNS地址后的Manage->Add certificate->随机生成一个SSL证书
-*若生成失败，可到[FreeSSL](https://freessl.cn/)自行申请
-4. 开启应用权限  Additional services->Status->Enabled
+3. 开启应用权限  Additional services->Status->Enabled
 
 
 #    五  搭建VLESS
@@ -87,9 +85,7 @@ DNS zones->Add new zone，填入注册的域名，并获取SERV00的DNS记录
 
 1. 添加端口  Port reservation->Add port->Random
 2. 添加域名  WWW websites->add new website->复制Cloudns中申请到的域名->Advanced settings->将Webiste type更改位Proxy->Proxy port中选择上一步添加的端口
-3. 为DNS解析中A记录的DNS地址添加SSL证书 WWW websites->Manage SSL certificates->选取A记录DNS地址后的Manage->Add certificate->随机生成一个SSL证书
-*若生成失败，可到[FreeSSL](https://freessl.cn/)自行申请
-4. 开启应用权限  Additional services->Status->Enabled
+3. 开启应用权限  Additional services->Status->Enabled
 
 
 #    五  搭建VLESS
@@ -195,8 +191,6 @@ DNS zones-&gt;Add new zone，填入注册的域名，并获取SERV00的DNS记录
 <ol>
 <li>添加端口  Port reservation-&gt;Add port-&gt;Random</li>
 <li>添加域名  WWW websites-&gt;add new website-&gt;复制Cloudns中申请到的域名-&gt;Advanced settings-&gt;将Webiste type更改位Proxy-&gt;Proxy port中选择上一步添加的端口</li>
-<li>为DNS解析中A记录的DNS地址添加SSL证书 WWW websites-&gt;Manage SSL certificates-&gt;选取A记录DNS地址后的Manage-&gt;Add certificate-&gt;随机生成一个SSL证书<br>
-*若生成失败，可到<a href="https://freessl.cn/" rel="nofollow">FreeSSL</a>自行申请</li>
 <li>开启应用权限  Additional services-&gt;Status-&gt;Enabled</li>
 </ol>
 <h1>五  搭建VLESS</h1>
@@ -309,40 +303,47 @@ DNS zones-&gt;Add new zone，填入注册的域名，并获取SERV00的DNS记录
 </ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">chmod +x auto-renew.sh</pre></div>
 <ol start="4">
-<li>使用PM2启动：</li>
+<li>启动保号脚本：</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">pm2 start ./auto-renew.sh</pre></div>
+<div class="highlight highlight-source-shell"><pre class="notranslate">./auto-renew.sh</pre></div>
 <ul>
 <li>
-<h4>保存PM2快照并将PM2加入服务器重启后自动启动</h4>
+<h4>保存PM2快照</h4>
 </li>
 </ul>
-<ol>
-<li>保存PM2快照</li>
-</ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">pm2 save</pre></div>
-<ol start="2">
-<li>在SERV00的管理页面上找到Cron jobs选项卡，使用Add cron job功能添加任务，Specify time选择After reboot，即为重启后运行。Form type选择Advanced，Command写：</li>
+<ul>
+<li>
+<h4>设置自动启动任务</h4>
+</li>
+</ul>
+<p>在SERV00的管理页面上找到Cron jobs选项卡，使用Add cron job功能添加任务，Specify time选择After reboot，即为重启后运行。Form type选择Advanced，Command写：</p>
+<ol>
+<li></li>
 </ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">/home/用户名/.npm-global/bin/pm2 resurrect</pre></div>
+<ol start="2">
+<li></li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">/home/用户名/opt/.auto-renew.sh</pre></div>
 <p>这样每次SERV00不定时重启任务时，都能自动调用PM2读取保存的任务列表快照，恢复任务列表。如果在保存了任务列表快照后又改变了任务PM2的任务列表，需要重新执行保存快照以更新任务列表。</p>
 <h1>*七  PM2可视化页面监控进程</h1>
 <ol>
 <li>进入<a href="https://app.pm2.io" rel="nofollow">https://app.pm2.io</a>PM2账号并创建新的Bucket：VLESS</li>
-<li>在SSH中开启页面监控，依次输入你注册PM2账号等信息</li>
+<li>根据web页面提示复制连接服务器命令在SSH中链接服务器，并输入你的注册信息</li>
+<li>在SSH中开启页面监控</li>
 </ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">pm2 monitor</pre></div>
-<ol start="3">
-<li>根据页面连接提示在SSH中链接服务器即可</li>
-</ol>
 <p>————————————————<br>
 版权声明：本文为「一休's Blog」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
 原文链接：<a href="https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2" rel="nofollow">https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2</a></p>
 <p>根据以上原文整理了顺序<br>
 附YOUTUBE视频链接：<a href="https://www.youtube.com/watch?v=lXQxEh8Awaw&amp;t=1s" rel="nofollow">https://www.youtube.com/watch?v=lXQxEh8Awaw&amp;t=1s</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://rodickyu.github.io"> RodickYu </a>
 <p>
@@ -397,6 +398,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");

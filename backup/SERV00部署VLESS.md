@@ -20,9 +20,7 @@ DNS zones->Add new zone，填入注册的域名，并获取SERV00的DNS记录
 
 1. 添加端口  Port reservation->Add port->Random
 2. 添加域名  WWW websites->add new website->复制Cloudns中申请到的域名->Advanced settings->将Webiste type更改位Proxy->Proxy port中选择上一步添加的端口
-3. 为DNS解析中A记录的DNS地址添加SSL证书 WWW websites->Manage SSL certificates->选取A记录DNS地址后的Manage->Add certificate->随机生成一个SSL证书
-*若生成失败，可到[FreeSSL](https://freessl.cn/)自行申请
-4. 开启应用权限  Additional services->Status->Enabled
+3. 开启应用权限  Additional services->Status->Enabled
 
 
 #    五  搭建VLESS
@@ -119,38 +117,46 @@ EOF
 chmod +x auto-renew.sh
 ``` 
 
-4. 使用PM2启动：
+4. 启动保号脚本：
 
 ```shell
-pm2 start ./auto-renew.sh
+./auto-renew.sh
 ``` 
 
-- ####  保存PM2快照并将PM2加入服务器重启后自动启动
-
-1. 保存PM2快照
+- ####  保存PM2快照
 
 ```shell
 pm2 save
 ``` 
 
-2. 在SERV00的管理页面上找到Cron jobs选项卡，使用Add cron job功能添加任务，Specify time选择After reboot，即为重启后运行。Form type选择Advanced，Command写：
+- ####  设置自动启动任务
+
+在SERV00的管理页面上找到Cron jobs选项卡，使用Add cron job功能添加任务，Specify time选择After reboot，即为重启后运行。Form type选择Advanced，Command写：
+
+1. 
 
 ```shell
 /home/用户名/.npm-global/bin/pm2 resurrect
 ``` 
 
+2. 
+
+```shell
+/home/用户名/opt/.auto-renew.sh
+```
+
 这样每次SERV00不定时重启任务时，都能自动调用PM2读取保存的任务列表快照，恢复任务列表。如果在保存了任务列表快照后又改变了任务PM2的任务列表，需要重新执行保存快照以更新任务列表。
+
 
 #    *七  PM2可视化页面监控进程
 
 1. 进入[https://app.pm2.io](https://app.pm2.io)PM2账号并创建新的Bucket：VLESS
-2. 在SSH中开启页面监控，依次输入你注册PM2账号等信息
+4. 根据web页面提示复制连接服务器命令在SSH中链接服务器，并输入你的注册信息
+5. 在SSH中开启页面监控
 
 ```shell
 pm2 monitor
 ``` 
-
-3. 根据页面连接提示在SSH中链接服务器即可
 
 
 ————————————————
