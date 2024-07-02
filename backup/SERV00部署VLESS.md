@@ -136,9 +136,12 @@ pm2 monitor
 
 
 ————————————————
-版权声明：本文为「一休's Blog」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2
+
+## 版权声明：本文为「一休's Blog」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://yixiu.icu/posts/gratis/freevpsandvless/#2%e5%ae%89%e8%a3%85pm2
 
 
-根据以上原文修改整理了顺序以方便实际操作
-附YOUTUBE视频链接：[https://www.youtube.com/watch?v=lXQxEh8Awaw&t=1s](https://www.youtube.com/watch?v=lXQxEh8Awaw&t=1s)
+- 根据以上原文修改整理了顺序以方便实际操作，删除了原文中关于SERV00保号脚本的操作
+- 附YOUTUBE视频链接：[https://www.youtube.com/watch?v=lXQxEh8Awaw&t=1s](https://www.youtube.com/watch?v=lXQxEh8Awaw&t=1s)
+
+
+#  SERV00保号操作，请参考github项目[serv00-auto-scripts](https://github.com/lopins/serv00-auto-scripts)
