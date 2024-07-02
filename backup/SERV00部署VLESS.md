@@ -60,7 +60,7 @@ bash <(curl -s https://raw.githubusercontent.com/k0baya/alist_repl/main/serv00/i
 - ####  安装依赖
 
 ```shell
-npm install -g pm2
+npm install
 ``` 
 
 **在安装完成后建议在SSH窗口中EXIT后重新登录一次以刷新npm安装状态
