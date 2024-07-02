@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RodickYu</title><link>https://rodickyu.github.io</link><description>Life is short,Play more!</description><copyright>RodickYu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/92588826?v=4</url><title>avatar</title><link>https://rodickyu.github.io</link></image><lastBuildDate>Mon, 01 Jul 2024 12:27:42 +0000</lastBuildDate><managingEditor>RodickYu</managingEditor><ttl>60</ttl><webMaster>RodickYu</webMaster><item><title>SERV00部署VLESS</title><link>https://rodickyu.github.io/post/SERV00-bu-shu-VLESS.html</link><description>#     一  注册SERV00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RodickYu</title><link>https://rodickyu.github.io</link><description>Life is short,Play more!</description><copyright>RodickYu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/92588826?v=4</url><title>avatar</title><link>https://rodickyu.github.io</link></image><lastBuildDate>Tue, 02 Jul 2024 20:44:57 +0000</lastBuildDate><managingEditor>RodickYu</managingEditor><ttl>60</ttl><webMaster>RodickYu</webMaster><item><title>SERV00部署VLESS</title><link>https://rodickyu.github.io/post/SERV00-bu-shu-VLESS.html</link><description>#     一  注册SERV00&#13;
   注册地址：[https://www.serv00.com/](https://www.serv00.com/)&#13;
   *会有IP纯净度的检测&#13;
 &#13;
@@ -47,7 +47,8 @@ git clone https://github.com/qwer-search/serv00-vless &amp;&amp; mv -f serv00-vl
 ```shell&#13;
 nano app.js&#13;
 ``` &#13;
-需要修改的项目：const uuid和const port，修改完成后Ctrl+X保存退出&#13;
+需要修改的项目：const uuid（建议修改）和const port（为面板Port reservation放行的端口），修改完成后按Ctrl+X，按y选择保存，回车退出&#13;
+** [UUID生成](https://1024tools.com/uuid)&#13;
 &#13;
 - ####  安装PM2&#13;
 &#13;
