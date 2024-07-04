@@ -120,7 +120,7 @@ pm2 save
 
 #    *七  PM2可视化页面监控进程（非必要程序）
 
-1. 进入[https://app.pm2.io](https://app.pm2.io)PM2账号并创建新的Bucket：VLESS
+1. 进入[https://app.pm2.io](https://app.pm2.io)注册PM2账号并创建新的Bucket：VLESS
 
 2. 链接PM2账号
 
