@@ -12,7 +12,7 @@
 
 1. 打开Cloudns控制面板，删除Cloudns中域名所有的DNS记录
 2. 打开SERV00的DevilWEB 网络面板（在邮件里面找面板的链接，用账号密码登录）
-DNS zones->Add new zone，填入注册的域名，并获取SERV00的DNS记录
+DNS zones->Add new zone，填入注册的Cloudns域名，并获取到SERV00的DNS记录
 3. 将获取的SERV00的DNS记录再填回Cloudns中
 
 

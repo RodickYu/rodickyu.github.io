@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RodickYu</title><link>https://rodickyu.github.io</link><description>Life is short,Play more!</description><copyright>RodickYu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/92588826?v=4</url><title>avatar</title><link>https://rodickyu.github.io</link></image><lastBuildDate>Tue, 02 Jul 2024 20:44:57 +0000</lastBuildDate><managingEditor>RodickYu</managingEditor><ttl>60</ttl><webMaster>RodickYu</webMaster><item><title>SERV00部署VLESS</title><link>https://rodickyu.github.io/post/SERV00-bu-shu-VLESS.html</link><description>#     一  注册SERV00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>RodickYu</title><link>https://rodickyu.github.io</link><description>Life is short,Play more!</description><copyright>RodickYu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/92588826?v=4</url><title>avatar</title><link>https://rodickyu.github.io</link></image><lastBuildDate>Thu, 04 Jul 2024 09:19:56 +0000</lastBuildDate><managingEditor>RodickYu</managingEditor><ttl>60</ttl><webMaster>RodickYu</webMaster><item><title>SERV00部署VLESS</title><link>https://rodickyu.github.io/post/SERV00-bu-shu-VLESS.html</link><description>#     一  注册SERV00&#13;
   注册地址：[https://www.serv00.com/](https://www.serv00.com/)&#13;
   *会有IP纯净度的检测&#13;
 &#13;
@@ -13,7 +13,7 @@
 &#13;
 1. 打开Cloudns控制面板，删除Cloudns中域名所有的DNS记录&#13;
 2. 打开SERV00的DevilWEB 网络面板（在邮件里面找面板的链接，用账号密码登录）&#13;
-DNS zones-&gt;Add new zone，填入注册的域名，并获取SERV00的DNS记录&#13;
+DNS zones-&gt;Add new zone，填入注册的Cloudns域名，并获取到SERV00的DNS记录&#13;
 3. 将获取的SERV00的DNS记录再填回Cloudns中&#13;
 &#13;
 &#13;
