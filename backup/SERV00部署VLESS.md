@@ -126,14 +126,7 @@ pm2 save
 
 ![微信截图_20240703043237](https://github.com/RodickYu/rodickyu.github.io/assets/92588826/145d099c-6a40-4a09-90e8-5f005c1fbc7d)
 
-根据信息在SSH中复制图片中第2条命令进行链接，中间可能需要输入你的PM2监测注册信息（账号，密码等）
-
-3. 在SSH中开启页面监控
-
-```shell
-pm2 monitor
-``` 
-
+根据信息在SSH中复制图片中第2条命令进行链接，即可在网页端观察VLESS运行状态
 
 ————————————————
 
