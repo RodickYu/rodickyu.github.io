@@ -1,3 +1,5 @@
+#  建议废弃,PM2经常造成意外中断和进程超出限制卡死等问题
+
 #     一  注册SERV00
   注册地址：[https://www.serv00.com/](https://www.serv00.com/)
   *会有IP纯净度的检测
